@@ -14,7 +14,7 @@
   crossorigin="anonymous"></script>
 <script>
   jQuery(document).ready(function($){
-    var timer = 10;
+    var timer = 300; //300 is 5 minutes
     $("#iframe").attr("src", $("#url").val());
     var clock = timer;
     setInterval(function(){
@@ -27,12 +27,24 @@
         $("#url").val(parts[0]+".com-"+(curr+1)+".jpg");
         $("#iframe").attr("src", $("#url").val());
       }
-    },1000);
+    },1000); //every second
+    $("#prev,#next").click(function(){
+      clock = timer;
+      parts = $("#url").val().split(".jpg"); var parts = parts[0].split(".com-"); var curr = parseInt(parts[1],10);
+        if($(this).attr("id") == "prev") {
+          $("#url").val(parts[0]+".com-"+(curr-1)+".jpg");
+        } else {
+          $("#url").val(parts[0]+".com-"+(curr+1)+".jpg");
+        }
+        $("#iframe").attr("src", $("#url").val());
+    });
   });
 </script>
 </head>
 <body>
-  <div id="clock">300</div>
+  <div id="clock"></div>
+  <button id="prev">&laquo;</button>
+  <button id="next">&raquo;</button>
   <input name="url" id="url" value="https://i2.wp.com/caps.pictures/201/7-thorragnarok/full/thor-ragnarok-movie-screencaps.com-902.jpg">
   <iframe src="" id="iframe" />
 </body>

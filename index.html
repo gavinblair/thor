@@ -6,6 +6,14 @@
   iframe {
     width: 100%;
     height: 100%;
+    
+  }
+  #overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    zoom: 2;
+    z-index: 2;
   }
 </style>
 <script
@@ -38,14 +46,20 @@
         }
         $("#iframe").attr("src", $("#url").val());
     });
+    $("#url").change(function(){
+        $("#iframe").attr("src", $("#url").val());
+        clock = timer;
+    });
   });
 </script>
 </head>
 <body>
-  <div id="clock"></div>
-  <button id="prev">&laquo;</button>
-  <button id="next">&raquo;</button>
-  <input name="url" id="url" value="https://i2.wp.com/caps.pictures/201/7-thorragnarok/full/thor-ragnarok-movie-screencaps.com-902.jpg">
+  <div id="overlay">
+    <div id="clock"></div>
+    <button id="prev">&laquo;</button>
+    <button id="next">&raquo;</button>
+    <input name="url" id="url" value="https://i2.wp.com/caps.pictures/201/7-thorragnarok/full/thor-ragnarok-movie-screencaps.com-902.jpg">
+  </div>
   <iframe src="" id="iframe" />
 </body>
 </html>

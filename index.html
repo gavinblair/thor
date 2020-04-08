@@ -14,11 +14,25 @@
   crossorigin="anonymous"></script>
 <script>
   jQuery(document).ready(function($){
+    var timer = 300;
     $("#iframe").attr("src", $("#url").val());
+    var clock = timer;
+    setInterval(function(){
+      clock--;
+      $("#clock").text(clock);
+      if(clock <= 0) {
+        clock = timer;
+        //next image
+        parts = $("#url").val().split(".jpg"); var parts = parts[0].split(".com-"); var curr = parseInt(parts[1],10);
+        $("#url").val(parts[0]+".com-"+(curr+1)+".jpg");
+        $("#iframe").attr("src", $("#url").val());
+      }
+    },1000);
   });
 </script>
 </head>
 <body>
+  <div id="clock">300</div>
   <input name="url" id="url" value="https://i2.wp.com/caps.pictures/201/7-thorragnarok/full/thor-ragnarok-movie-screencaps.com-902.jpg">
   <iframe src="" id="iframe" />
 </body>
